@@ -1,16 +1,23 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ book.title }}</title>
-</head>
-<body>
-    <h1>{{ book.title }}</h1>
-    <p><strong>Автор:</strong> {{ book.author }}</p>
-    <p><strong>Описание:</strong> {{ book.description }}</p>
-    <p><strong>Цена:</strong> {{ book.price }} сом</p>
-    <p><em>Добавлено: {{ book.created_at }}</em></p>
-    
-    <a href="/books/all/">Назад к списку</a>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ book.title }}
+{% endblock %}
+
+{% block content %}
+    <div class="book-detail">
+        <h1>{{ book.title }}</h1>
+        
+        {% if book.image %}
+            <img src="{{ book.image.url }}" alt="{{ book.title }}" style="max-width: 300px; border-radius: 10px; margin-bottom: 20px;">
+        {% endif %}
+
+        <p><strong>Автор:</strong> {{ book.author }}</p>
+        <p><strong>Описание:</strong> {{ book.description }}</p>
+        <p><strong>Цена:</strong> {{ book.price }} сом</p>
+        <p><em>Добавлено: {{ book.created_at }}</em></p>
+        
+        <br>
+        <a href="/books/all/" class="btn">🔙 Назад к списку</a>
+    </div>
+{% endblock %}
